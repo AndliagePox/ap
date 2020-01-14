@@ -39,7 +39,7 @@ public class Solution00169 {
         return maxTimesNum;
         /*
          * 时空都是O(n)，后来我看到一种效率更高的解法：
-         * 投票法，太数学建模了，神奇
+         * 投票法，太神奇了，那么请问是如何想到的呢
          */
     }
 }
