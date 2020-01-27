@@ -19,7 +19,8 @@ public class Solution00050 {
         } else {
             return fastPow(x, n);
         }
-        /* 时间O(log n)
+        /*
+         * 时间O(log n)
          * 空间O(log n)(递归调用栈，记得某次考试还写错了这种事情)
          */
     }
