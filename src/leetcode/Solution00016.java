@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Solution00016 {
     public static void main(String[] args) {
-        int[] nums = {-55,-24,-18,-11,-7,-3,4,5,6,9,11,23,33};
+        int[] nums = {-55, -24, -18, -11, -7, -3, 4, 5, 6, 9, 11, 23, 33};
         int target = 0;
         System.out.println(new Solution00016().threeSumClosest(nums, target));
     }
