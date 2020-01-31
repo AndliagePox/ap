@@ -5,6 +5,8 @@
 
 package leetcode;
 
+import leetcode.ds.ListNode;
+
 public class Solution00061 {
     public static void main(String[] args) {
         ListNode l = new ListNode(0);

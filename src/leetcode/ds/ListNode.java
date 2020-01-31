@@ -3,16 +3,16 @@
  * Date: 2020-01-16
  */
 
-package leetcode;
+package leetcode.ds;
 
 /**
  * Definition for singly-linked list.
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
     }
 }

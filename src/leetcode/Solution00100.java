@@ -5,6 +5,8 @@
 
 package leetcode;
 
+import leetcode.ds.TreeNode;
+
 public class Solution00100 {
     public static void main(String[] args) {
         TreeNode p = new TreeNode(1);
