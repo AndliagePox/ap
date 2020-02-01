@@ -5,6 +5,8 @@
 
 package bh3;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * 模拟测试一个角色抽毕业需要多少发
  */
@@ -87,9 +89,10 @@ public class GraduateTest {
         int count = 0, upTimes = 0;
         boolean weapon = false, sA = false, sB = false, sC = false;
         double random;
+        ThreadLocalRandom tlr = ThreadLocalRandom.current();
         while (true) {
             count++;
-            random = Math.random();
+            random = tlr.nextDouble();
             if (upTimes == 9) {
                 upTimes = 0;
                 if (random < 0.2) {
@@ -137,9 +140,10 @@ public class GraduateTest {
         int count = 0, upTimes = 0, sA = 0, sB = 0, sC = 0, sType;
         boolean weapon = false;
         double random;
+        ThreadLocalRandom tlr = ThreadLocalRandom.current();
         while (true) {
             count++;
-            random = Math.random();
+            random = tlr.nextDouble();
             if (upTimes == 9) {
                 upTimes = 0;
                 if (random < 0.2) {
