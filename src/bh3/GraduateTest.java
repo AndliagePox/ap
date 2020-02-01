@@ -11,8 +11,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * 模拟测试一个角色抽毕业需要多少发
  */
 public class GraduateTest {
-    private static int totalTimes = 1000000;
-    private static int threadCount = 1;
+    private static int totalTimes = 10000000;
+    private static int threadCount = 8;
     private static int completeThreads = 0;
 
     private static int totalCount = 0;
@@ -30,7 +30,6 @@ public class GraduateTest {
             threads[t] = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println(Thread.currentThread().getName() + " rs");
                     int i, s, e, times = totalTimes / threadCount;
                     int countS = 0, countE = 0, count = 0;
                     for (i = 0; i < times; i++) {
@@ -40,16 +39,13 @@ public class GraduateTest {
                         countS += s;
                         countE += e;
                     }
-                    System.out.println(Thread.currentThread().getName() + " re");
                     synchronized (writeLock) {
                         totalCount += count;
                         totalCountS += countS;
                         totalCountE += countE;
                         completeThreads++;
-                        System.out.println(Thread.currentThread().getName() + " ce");
                         if (completeThreads == threadCount) {
                             synchronized (completeLock) {
-                                System.out.println(Thread.currentThread().getName() + " ne");
                                 completeLock.notifyAll();
                             }
                         }
@@ -76,9 +72,10 @@ public class GraduateTest {
 
     private static int getS() {
         int count = 0;
+        ThreadLocalRandom tlr = ThreadLocalRandom.current();
         while (true) {
             count++;
-            if (Math.random() < 0.015 || count == 100) {
+            if (tlr.nextDouble() < 0.015 || count == 100) {
                 return count;
             }
         }
