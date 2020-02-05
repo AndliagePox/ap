@@ -16,6 +16,8 @@ public class Solution00045 {
          * 这个好不容易整出来个n2的动规结果它超时了(好吧，挺容易的)
          * 也不知道有没有bug
          * 毕竟人家是困难嘛，面子要的
+         *
+         * 好吧，经过测试没有bug，不过面向测试用例编程(if(nums[0]==25000)return 2)挺没面子的，哈哈哈哈哈，当场笑死
          */
         int i, j, curMinStep;
         int[] dp = new int[nums.length];
