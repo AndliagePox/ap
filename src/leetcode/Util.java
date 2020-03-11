@@ -6,6 +6,7 @@
 package leetcode;
 
 import leetcode.ds.ListNode;
+import leetcode.ds.TreeNode;
 
 public class Util {
     public static ListNode buildLinkedList(int[] nums) {
@@ -24,5 +25,13 @@ public class Util {
             head = head.next;
         }
         System.out.println();
+    }
+
+    public static void printTree(TreeNode root) {
+        if (root == null) return;
+
+        System.out.println(root.val + " ");
+        printTree(root.left);
+        printTree(root.right);
     }
 }
