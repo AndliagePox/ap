@@ -7,7 +7,7 @@ package algorithm;
 
 import java.util.Arrays;
 
-public class Quicksort {
+public class Sort {
     public static void main(String[] args) {
         int times = 10000000;
         int[] a, src = {
