@@ -8,7 +8,7 @@ package leetcode;
 import leetcode.ds.ListNode;
 import leetcode.ds.TreeNode;
 
-public class Util {
+public abstract class Util {
     public static ListNode buildLinkedList(int[] nums) {
         ListNode head = new ListNode(0);
         ListNode temp = head;
