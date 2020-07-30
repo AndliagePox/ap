@@ -11,8 +11,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * 模拟测试一个角色抽毕业需要多少发
  */
 public class GraduateTest {
-    private static int totalTimes = 10000000;
-    private static int threadCount = 8;
+    private static final int totalTimes = 10000000;
+    private static final int threadCount = 8;
     private static int completeThreads = 0;
 
     private static int totalCount = 0;
@@ -27,27 +27,24 @@ public class GraduateTest {
         Thread[] threads = new Thread[threadCount];
 
         for (int t = 0; t < threadCount; t++) {
-            threads[t] = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    int i, s, e, times = totalTimes / threadCount;
-                    int countS = 0, countE = 0, count = 0;
-                    for (i = 0; i < times; i++) {
-                        s = getS();
-                        e = getEquipmentsWithWish();
-                        count += s + e;
-                        countS += s;
-                        countE += e;
-                    }
-                    synchronized (writeLock) {
-                        totalCount += count;
-                        totalCountS += countS;
-                        totalCountE += countE;
-                        completeThreads++;
-                        if (completeThreads == threadCount) {
-                            synchronized (completeLock) {
-                                completeLock.notifyAll();
-                            }
+            threads[t] = new Thread(() -> {
+                int i, s, e, times = totalTimes / threadCount;
+                int countS = 0, countE = 0, count = 0;
+                for (i = 0; i < times; i++) {
+                    s = getS();
+                    e = getEquipmentsWithWish();
+                    count += s + e;
+                    countS += s;
+                    countE += e;
+                }
+                synchronized (writeLock) {
+                    totalCount += count;
+                    totalCountS += countS;
+                    totalCountE += countE;
+                    completeThreads++;
+                    if (completeThreads == threadCount) {
+                        synchronized (completeLock) {
+                            completeLock.notifyAll();
                         }
                     }
                 }
