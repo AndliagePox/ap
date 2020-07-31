@@ -9,13 +9,13 @@ public class BH3SummerMelee2020 {
         int i, roundCount = 100000; // 使用指南之：局数
         int aWin = 0, bWin = 0;
         for (i = 0; i < roundCount; i++) {
-            if (gameOlenyevaVsKiana()) // 使用指南之：谁打谁
+            if (gameRitaVsFuhua()) // 使用指南之：谁打谁
                 aWin++;
             else
                 bWin++;
             System.out.println();
         }
-        System.out.println("阿琳姐妹:" + aWin + "\n琪亚娜:" + bWin); // 使用指南之：胜场统计
+        System.out.println("A:" + aWin + "\nB:" + bWin); // 使用指南之：胜场统计
     }
 
     @SuppressWarnings("unused")
@@ -228,6 +228,192 @@ public class BH3SummerMelee2020 {
             if (bHp <= 0) {
                 System.out.println("阿琳姐妹胜利");
                 return true;
+            }
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static boolean gameTheresaVsFuhua() {
+        int dA, dB, round = 0, aHp = 100, bHp = 100, bDe = 15;
+        double pAr = 0.3, aHr = 1.0;
+
+        System.out.println("德丽莎 VS 上仙");
+
+        while (true) {
+            System.out.println("\n第" + ++round + "回合:");
+
+            if (Math.random() < aHr) {
+                if (round % 3 == 0) {
+                    dA = 5 * (16 - bDe);
+                    System.out.print("德丽莎发动在线踢人，");
+                } else {
+                    dA = 19 - bDe;
+                    System.out.print("德丽莎A了一下，");
+                }
+                bHp -= dA;
+                System.out.println("对符华造成" + dA + "点伤害，上仙当前生命值：" + bHp);
+                if (bHp <= 0) {
+                    System.out.println("德丽莎胜利");
+                    return true;
+                }
+            } else {
+                System.out.println("受墨水影响，德丽莎的攻击没有命中");
+            }
+
+            if (Math.random() < pAr) {
+                bDe -= 5;
+                System.out.println("上仙被血犹大可爱到了，防御力降低5点");
+            }
+
+            if (round % 3 == 0) {
+                dB = 18;
+                aHr -= 0.25;
+                System.out.print("上仙泼出墨水，对德丽莎造成18点元素伤害，并使德丽莎命中率下降，");
+            } else {
+                dB = 17;
+                System.out.print("上仙A了一下，对德丽莎造成17点元素伤害，");
+            }
+            aHp -= dB;
+            System.out.println("德丽莎当前生命值：" + aHp);
+
+            if (aHp <= 0) {
+                System.out.println("上仙胜利");
+                return false;
+            }
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static boolean gameRitaVsTheresa() {
+        int dA, dB, round = 0, aHp = 100, bHp = 100, aDe = 11, bAt = 19, aRc = 0;
+        boolean aRf = false;
+        double pAr = 0.35, pBr = 0.3;
+
+        System.out.println("丽塔 VS 德丽莎");
+
+        while (true) {
+            System.out.println("\n第" + ++round + "回合:");
+
+            if (aRc > 0 || round % 3 != 0) {
+                dB = bAt - aDe;
+                if (dB < 0) dB = 0;
+                if (aRf) {
+                    dB = (int) ((double) dB * 0.4);
+                }
+                System.out.print("德丽莎A了一下，");
+            } else {
+                dB = 5 * (16 - aDe);
+                if (aRf) {
+                    dB = (int) ((double) dB * 0.4);
+                }
+                System.out.print("德丽莎发动在线踢人，");
+            }
+            aHp -= dB;
+            System.out.println("对丽塔造成了" + dB + "点伤害，丽塔当前生命值：" + aHp);
+
+            if (aHp <= 0) {
+                System.out.println("德丽莎胜利");
+                return false;
+            }
+
+            if (aRc <= 0 && Math.random() < pBr) {
+                aDe -= 5;
+                System.out.println("丽塔被血犹大可爱到了，防御力下降5点");
+            }
+
+            aRc--;
+
+            if (round % 4 == 0) {
+                bHp += 4;
+                aRc = 2;
+                aRf = true;
+                System.out.println("丽塔发动完美心意，为德丽莎回复了4点生命值，上仙当前生命值：" + bHp +
+                        "\n德丽莎已被魅惑，伤害下降60%，2回合内无法使用技能");
+            } else {
+                if (Math.random() < pAr) {
+                    dA = 11;
+                    bAt -= 4;
+                    if (bAt < 0) bAt = 0;
+                    System.out.print("丽塔发动女仆的温柔清理，德丽莎的攻击力下降了4点，");
+                } else {
+                    dA = 14;
+                    System.out.print("丽塔A了一下，");
+                }
+                bHp -= dA;
+                System.out.println("对德丽莎造成了" + dA + "点伤害，德丽莎当前生命值：" + bHp);
+
+                if (bHp <= 0) {
+                    System.out.println("丽塔胜利");
+                    return true;
+                }
+            }
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static boolean gameRitaVsFuhua() {
+        int dA, dB, round = 0, aHp = 100, bHp = 100, bAt = 17, aRc = 0;
+        boolean aRf = false;
+        double pAr = 0.35, aHr = 1.0;
+
+        System.out.println("丽塔 VS 上仙");
+
+        while (true) {
+            System.out.println("\n第" + ++round + "回合:");
+
+            if (round % 4 == 0) {
+                bHp += 4;
+                aRc = 2;
+                aRf = true;
+                System.out.println("丽塔发动完美心意，为上仙回复了4点生命值，上仙当前生命值：" + bHp +
+                        "\n上仙已被魅惑，伤害下降60%，2回合内无法使用技能");
+            } else {
+                if (Math.random() < pAr) {
+                    dA = 8;
+                    bAt -= 4;
+                    if (bAt < 0) bAt = 0;
+                    System.out.print("丽塔发动女仆的温柔清理，上仙的攻击力下降了4点，");
+                } else {
+                    dA = 11;
+                    System.out.print("丽塔A了一下，");
+                }
+
+                if (Math.random() < aHr) {
+                    bHp -= dA;
+                    System.out.println("对上仙造成了" + dA + "点伤害，上仙当前生命值：" + bHp);
+                } else {
+                    System.out.println("但是没有命中");
+                }
+
+                if (bHp <= 0) {
+                    System.out.println("丽塔胜利");
+                    return true;
+                }
+            }
+
+            if (round % 3 == 0 && aRc <= 0) {
+                if (aRf) {
+                    dB = 7;
+                } else {
+                    dB = 18;
+                }
+                aHr -= 0.25;
+                System.out.print("上仙泼出墨水，对丽塔造成" + dB + "点元素伤害，并使丽塔命中率下降，");
+            } else {
+                dB = bAt;
+                if (aRf) {
+                    dB = (int) ((double) dB * 0.4);
+                }
+                System.out.print("上仙A了一下，对丽塔造成" + dB + "点元素伤害，");
+            }
+            aHp -= dB;
+            System.out.println("丽塔当前生命值：" + aHp);
+
+            aRc--;
+
+            if (aHp <= 0) {
+                System.out.println("上仙胜利");
+                return false;
             }
         }
     }
