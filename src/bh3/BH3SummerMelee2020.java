@@ -9,7 +9,7 @@ public class BH3SummerMelee2020 {
         int i, roundCount = 100000; // 使用指南之：局数
         int aWin = 0, bWin = 0;
         for (i = 0; i < roundCount; i++) {
-            if (gameRitaVsFuhua()) // 使用指南之：谁打谁
+            if (gameMurataVsDuya()) // 使用指南之：谁打谁
                 aWin++;
             else
                 bWin++;
@@ -397,7 +397,7 @@ public class BH3SummerMelee2020 {
                 } else {
                     dB = 18;
                 }
-                aHr -= 0.25;
+                aHr *= 0.75;
                 System.out.print("上仙泼出墨水，对丽塔造成" + dB + "点元素伤害，并使丽塔命中率下降，");
             } else {
                 dB = bAt;
@@ -414,6 +414,126 @@ public class BH3SummerMelee2020 {
             if (aHp <= 0) {
                 System.out.println("上仙胜利");
                 return false;
+            }
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static boolean gameMeiVsDuya() {
+        int dA, dB, round = 0, aHp = 100, bHp = 100;
+        boolean pAf = false, pBf = false;
+        double pAr = 0.3, pBr = 0.25;
+
+        System.out.println("芽衣 VS 渡鸦");
+
+        if (Math.random() < pBr) {
+            pBf = true;
+            System.out.println("我渡鸦今天不是针对谁，在座的各位，受到的伤害都得提升");
+        }
+
+        while (true) {
+            System.out.println("\n第" + ++round + "回合:");
+
+            if (round % 2 == 0) {
+                dA = 15;
+                System.out.print("芽衣呼叫俱利伽罗，对渡鸦造成3 * 5 = 15点元素伤害，");
+                if (Math.random() < pAr) {
+                    pAf = true;
+                    System.out.print("顺便麻痹了渡鸦，");
+                }
+            } else {
+                dA = 8;
+                System.out.print("芽衣A了一下，");
+                if (Math.random() < pAr) {
+                    pAf = true;
+                    System.out.print("顺便麻痹了渡鸦，");
+                }
+                System.out.print("对渡鸦造成了8点伤害，");
+            }
+            bHp -= dA;
+            System.out.println("渡鸦当前生命值：" + bHp);
+
+            if (bHp <= 0) {
+                System.out.println("芽衣胜利");
+                return true;
+            }
+
+            if (pAf) {
+                pAf = false;
+                System.out.println("渡鸦被麻痹了，下一回合见");
+            } else {
+                if (round % 3 == 0) {
+                    dB = 4 * 7;
+                    System.out.print("渡鸦发动别墅小岛，");
+                } else {
+                    dB = 23 - 12;
+                    System.out.print("渡鸦A了一下，");
+                }
+                if (pBf) {
+                    dB += dB / 4;
+                }
+                aHp -= dB;
+                System.out.println("对芽衣造成了" + dB + "点伤害，芽衣当前生命值：" + aHp);
+            }
+
+            if (aHp <= 0) {
+                System.out.println("渡鸦胜利");
+                return false;
+            }
+        }
+    }
+
+    private static boolean gameMurataVsDuya() {
+        int dA, dB, round = 0, aHp = 100, bHp = 100, aAt = 23;
+        boolean pBf = false;
+        double pBr = 0.25, aHr = 1.0;
+
+        System.out.println("芽衣 VS 渡鸦");
+
+        if (Math.random() < pBr) {
+            pBf = true;
+            System.out.println("我渡鸦今天不是针对谁，在座的各位，受到的伤害都得提升");
+        }
+
+        while (true) {
+            System.out.println("\n第" + ++round + "回合:");
+
+            if (round % 3 == 0) {
+                dB = 7 * (16 - 9);
+                System.out.print("渡鸦发动别墅小岛，");
+            } else {
+                dB = 23 - 9;
+                System.out.print("渡鸦A了一下，");
+            }
+            if (pBf) {
+                dB += dB / 4;
+            }
+            aHp -= dB;
+            System.out.println("对姬子造成了" + dB + "点伤害，姬子当前生命值：" + aHp);
+
+            if (aHp <= 0) {
+                System.out.println("渡鸦胜利");
+                return false;
+            }
+
+            if (round % 2 == 0) {
+                aAt *= 2;
+                aHr *= 0.65;
+                System.out.println("干杯，朋友！姬子攻击力翻倍，命中率下降");
+            }
+
+            System.out.print("姬子A了一下，");
+            if (Math.random() < aHr) {
+                dA = aAt - 14;
+                bHp -= dA;
+                System.out.println("对渡鸦造成了" + dA + "点伤害，渡鸦当前生命值：" + bHp);
+            } else {
+                System.out.println("但没有命中");
+            }
+
+            if (bHp <= 0) {
+                System.out.println("姬子胜利");
+                return true;
             }
         }
     }
